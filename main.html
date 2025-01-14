@@ -4,20 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Caption Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .ascii-art {
+            font-family: monospace;
+            text-align: center;
+            color: #f7a500;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>YouTube Caption Search</h1>
+    <div class="ascii-art">
+        <pre>
+           (\(\ 
+          ( -.-)
+          o_(")(")
+        </pre>
+        <p>Welcome to the YouTube Caption Search!</p>
+    </div>
 
-    <label for="channelId">Channel ID:</label>
-    <input type="text" id="channelId" placeholder="Enter YouTube Channel ID" />
+    <div class="container">
+        <h1>YouTube Caption Search</h1>
 
-    <label for="searchTerm">Search Term:</label>
-    <input type="text" id="searchTerm" placeholder="Enter keyword" />
+        <label for="channelId">Channel ID:</label>
+        <input type="text" id="channelId" placeholder="Enter YouTube Channel ID" />
 
-    <button onclick="searchCaptions()">Search</button>
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" id="searchTerm" placeholder="Enter keyword" />
 
-    <h2>Matching Videos</h2>
-    <ul id="videoList"></ul>
+        <button onclick="searchCaptions()">Search</button>
+
+        <h2>Matching Videos</h2>
+        <ul id="videoList"></ul>
+    </div>
 
     <script>
         async function searchCaptions() {
