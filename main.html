@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Caption Search</title>
+</head>
+<body>
+    <h1>YouTube Caption Search</h1>
+
+    <label for="channelId">Channel ID:</label>
+    <input type="text" id="channelId" placeholder="Enter YouTube Channel ID" />
+
+    <label for="searchTerm">Search Term:</label>
+    <input type="text" id="searchTerm" placeholder="Enter keyword" />
+
+    <button onclick="searchCaptions()">Search</button>
+
+    <h2>Matching Videos</h2>
+    <ul id="videoList"></ul>
+
+    <script>
+        async function searchCaptions() {
+            const channelId = document.getElementById('channelId').value;
+            const searchTerm = document.getElementById('searchTerm').value;
+
+            if (!channelId || !searchTerm) {
+                alert('Both Channel ID and Search Term are required');
+                return;
+            }
+
+            const response = await fetch('http://localhost:3000/search-captions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ channelId, searchTerm }),
+            });
+
+            const data = await response.json();
+
+            const videoList = document.getElementById('videoList');
+            videoList.innerHTML = '';
+
+            if (data.matchingVideos.length === 0) {
+                videoList.innerHTML = '<li>No videos found with that keyword in captions.</li>';
+            } else {
+                data.matchingVideos.forEach(videoId => {
+                    const li = document.createElement('li');
+                    li.textContent = `https://www.youtube.com/watch?v=${videoId}`;
+                    videoList.appendChild(li);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
